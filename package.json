@@ -1,0 +1,41 @@
+{
+  "name": "animate.css.js",
+  "version": "0.0.1",
+  "description": "Javascript(jQuery) helper for animate.css, let the animation in the JavaScript to use more simple.",
+  "main": "src/animate.jquery.js",
+  "browser": "lib/animate.jquery.min.js",
+  "scripts": {
+    "build": "webpack --mode=build",
+    "start": "node server/app.js",
+    "dev": "webpack --progress --colors --watch --mode=dev"
+  },
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "eslint": "^3.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lzwme/animate.css.js.git"
+  },
+  "keywords": [
+    "animate",
+    "animate.css",
+    "jQuery",
+    "umd",
+    "commonjs"
+  ],
+  "author": "lzwme",
+  "maintainers": [
+    {
+      "name": "renxia",
+      "url": "https://lzw.me"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lzwme/animate.css.js/issues"
+  },
+  "homepage": "https://github.com/lzwme/animate.css.js"
+}
