@@ -1,19 +1,19 @@
 # animate.css.js
 Javascript(jQuery) helper for (animate.css)[https://daneden.github.io/animate.css], let the animation in the JavaScript to use more simple.
 
-[Demo](http://lzw.me/pages/demo/animate.css.js/example)
+(Demo)[http://lzw.me/pages/demo/animate.css.js/example]
 
-## INSTALL
+## Installation
 
-### with npm, es6/amd/commonjs
+To install via npm:
 
 ```bash
 npm i animate.css.js --save
 ```
 
-Or download the latest (release)[https://github.com/lzwme/animate.css.js/releases] package, and unzip it.
+Or download the latest [release](https://github.com/lzwme/animate.css.js/releases) package, and unzip it.
 
-## USEAGE
+## USAGE
 
 ```js
 // example for es6
@@ -33,15 +33,27 @@ animate({$el: '.div1'}).then(() => {
 }).then(() => {
     return animate({$el: '.div3'})
 });
+
+// use as jQuery plugin
+$('body').animateCss().then((type) => {
+    console.log('end, animate type: ', type);
+});
+
+$('body').animateCss('zoomIn');
+
+$('body').animateCss({
+    type: 'shake',
+    infinite: true
+});
 ```
 
-### Simple Useage
+### Basic Usage
 
 ```js
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="animate.css.js/lib/animate.jquery.min.js"></script>
-
+<script>
 window.animatecssjs({$el: $('#logo')}).then(() => {
     console.log('执行完成')
 });
@@ -51,21 +63,22 @@ window.animatecssjs({$el: '.div1'}).then(() => {
 }).then(() => {
     return animate({$el: '.div3'})
 });
+</script>
 ```
 
 ## Options
 
-`$el:` null, Element for animate, jQuery or class\id selector
+`$el: null,` Element for animate, jQuery or class\id selector
 
-`type:` '', Animate type, String or Array.
+`type: '',` Animate type, String or Array.
 
-`infinite:` false, Whether animate infinite
+`infinite: false,` Whether animate infinite
 
-`keyword:` '', Vaild when type='', String or RegExp.
+`keyword: '',` Vaild when type='', String or RegExp.
 
-`reset:` true,  Reset element class when animate end.
+`reset: true,`  Reset element class when animate end.
 
-`callback:` null, callback when infinite=false and animate end.
+`callback: null,` callback when infinite=false and animate end.
 
 
 ## Note on Patches / Pull Requests

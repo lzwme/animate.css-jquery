@@ -158,5 +158,20 @@
 
     animate.animateList = animateList;
 
+    // jQuery plugins
+    $.fn.extend({
+        animateCss: function (opts) {
+            if ('string' === typeof opts) {
+                opts = {type: opts};
+            }
+
+            opts = $.extend({}, opts, {
+                $el: $(this)
+            });
+
+            return animate(opts);
+        }
+    });
+
     return animate;
 });
