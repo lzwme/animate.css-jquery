@@ -3,6 +3,11 @@ Javascript(jQuery) helper for [animate.css)](https://daneden.github.io/animate.c
 
 [Demo](http://lzw.me/pages/demo/animate.css.js/example)
 
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
+
 ## Installation
 
 To install via npm:
@@ -91,3 +96,18 @@ window.animatecssjs({$el: '.div1'}).then(() => {
 animate.css.js is released under the MIT license.
 
 该插件由[志文工作室](http://lzw.me)开发和维护。
+
+[npm-image]: https://img.shields.io/npm/v/animate.css.js.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/animate.css.js
+[github-tag]: http://img.shields.io/github/tag/lzwme/animate.css.js.svg?style=flat-square
+[github-url]: https://github.com/lzwme/animate.css.js/tags
+[travis-image]: https://img.shields.io/travis/lzwme/animate.css.js.svg?style=flat-square
+[travis-url]: https://travis-ci.org/lzwme/animate.css.js
+[coveralls-image]: https://img.shields.io/coveralls/lzwme/animate.css.js.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/lzwme/animate.css.js?branch=master
+[david-image]: http://img.shields.io/david/lzwme/animate.css.js.svg?style=flat-square
+[david-url]: https://david-dm.org/lzwme/animate.css.js
+[license-image]: http://img.shields.io/npm/l/animate.css.js.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/animate.css.js.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/animate.css.js
