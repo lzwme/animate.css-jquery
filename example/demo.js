@@ -7,17 +7,18 @@ $(function(animatecssjs) {
 
     function log(msg) {
         console.log(msg);
-        $log.append('<p>' + msg + '</p>').scrollTop($log.height());
+        $log.prepend('<p>' + msg + '</p>'); //.scrollTop($log.height());
     }
 
     function animateDemo(el, type, opts) {
-        var starttime = new Date();
+        var colors = ['#08f', '#f80', '#af0', '#f00', '#ff0', '#0ff', '#f0f', '#000', '#4a159f', '#170'];
         log('animate start: ' + (type || 'random'));
-        $(el).html(type || 'random');
+        $(el).html(type || 'random').css('background', colors[Math.floor(Math.random() * colors.length)]);
 
+        var starttime = new Date();
         return animatecssjs($.extend({$el: el, type: type}, opts)).then(function(_type) {
             $(el).html(_type);
-            log('animate end [' + (new Date() - starttime) + 'ms] :' + _type);
+            log('<hr> animate end [' + (new Date() - starttime) + 'ms] : ' + _type);
         });
     }
 
@@ -83,7 +84,12 @@ $(function(animatecssjs) {
         // animate body
         animatecssjs({$el: 'body'}).then(function(type) {
             log('animate body: ' + type);
-            console.log('animate end');
+
+            return $('.btn').animateCss({
+                keyword: /in/i
+            });
+        }).then(function(type) {
+            log('<hr> animate btns: ' + type);
         });
 
         initSelect();

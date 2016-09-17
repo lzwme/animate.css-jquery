@@ -1,7 +1,7 @@
 # animate.css.js
-Javascript(jQuery) helper for (animate.css)[https://daneden.github.io/animate.css], let the animation in the JavaScript to use more simple.
+Javascript(jQuery) helper for [animate.css)](https://daneden.github.io/animate.css), let the animation in the JavaScript to use more simple.
 
-(Demo)[http://lzw.me/pages/demo/animate.css.js/example]
+[Demo](http://lzw.me/pages/demo/animate.css.js/example)
 
 ## Installation
 
@@ -79,7 +79,6 @@ window.animatecssjs({$el: '.div1'}).then(() => {
 `reset: true,`  Reset element class when animate end.
 
 `callback: null,` callback when infinite=false and animate end.
-
 
 ## Note on Patches / Pull Requests
 
