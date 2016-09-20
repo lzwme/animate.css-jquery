@@ -33,6 +33,10 @@ animate({$el: '.div1:eq(0)', keyword: 'In'}).done((class) => {
     console.log(class)
 });
 
+animate('.div1:eq(0)', {keyword: /out/i}).done((class) => {
+    console.log(class)
+});
+
 animate({$el: '.div1'}).then(() => {
     return animate({$el: '.div2'})
 }).then(() => {
@@ -63,10 +67,14 @@ window.animatecssjs({$el: $('#logo')}).then(() => {
     console.log('执行完成')
 });
 
-window.animatecssjs({$el: '.div1'}).then(() => {
-    return animate({$el: '.div2'})
+window.animatecssjs('#logo'}).then(() => {
+    console.log('执行完成')
+});
+
+window.animatecssjs('.div1').then(() => {
+    return animate('.div2')
 }).then(() => {
-    return animate({$el: '.div3'})
+    return animate('.div3')
 });
 </script>
 ```
@@ -77,11 +85,13 @@ window.animatecssjs({$el: '.div1'}).then(() => {
 
 `type: '',` Animate type, String or Array.
 
-`infinite: false,` Whether animate infinite
+`infinite: false,` Whether animate infinite.
 
 `keyword: '',` Vaild when type='', String or RegExp.
 
 `reset: true,`  Reset element class when animate end.
+
+`hideScrollbar: true,` Whether hidden browser scrollbar.
 
 `callback: null,` callback when infinite=false and animate end.
 

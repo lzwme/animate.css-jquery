@@ -38,21 +38,22 @@
 
     /**
      * animate 设置元素动画。依赖于 animate.css，应手动引入相关样式
-     * @alias module:dwAnimate
+     * @param {String|Object} options.el 为 $el 或 options
      * @param {Object} options 主要参数示例：
      * ```js
      * {
      *     $el: null, 执行动画的元素jquery对象，或 class\id
      *     type: null, 动画类型，为 string。为空时随机取值执行；为数组列表时从列表中随机选择执行
      *     infinite: false, 是否无限运动
-     *     keyword: '', 为随机取值时，限定包含关键字的动画列表。可为简单正则，未匹配到则随机取值
+     *     keyword: null, 为随机取值时，限定包含关键字的动画列表。可为简单正则，未匹配到则随机取值
      *     reset: true,  执行后是否重置状态
+     *     hideScrollbar: true, 执行时是否隐藏浏览器 scrollbar
      *     callback infinite为 false 时，成功执行后回调
      * }
      * ```
      * @return {Object}         $.Deferred 对象，当 infinite 为false时，动画执行完成后设置其状态为 resolved
      */
-    function animate(options) {
+    function animate(el, options) {
         // 支持的动画类型，75 种
         var animateFilterList = [], // 用于 keyword 过滤
             $promise = $.Deferred(),
@@ -61,20 +62,30 @@
             $html,
             hoverflow;
 
-        if (!options) {
-            return $promise.reject('empty options');
+        if (typeof el === 'string' || el.length) {
+            $el = $(el);
+        } else {
+            options = el;
         }
+
+        options = $.extend(true, {
+            type: null,
+            infinite: false,
+            keyword: null,
+            reset: true,
+            hideScrollbar: true
+        }, options);
 
         if (typeof options.$el === 'string') {
             $el = $(options.$el);
         } else if (typeof options.$e === 'string') {
             $el = $(options.$e);
+        } else {
+            $el = $($el);
         }
 
-        $el = $(options.$el || options.$e);
-
         if (!$el.length) { // 元素不存在
-            return $promise.reject('not found element');
+            return $promise.reject('not found target element');
         }
 
         // 首先移除所有已加载的动画类
@@ -109,23 +120,27 @@
 
         animateClass += ' animated';
 
-        $html = $('html:eq(0)');
-        hoverflow = $html.css('overflow');
+        if (options.hideScrollbar) {
+            $html = $('html:eq(0)');
+            hoverflow = $html.css('overflow');
+        }
 
         if (options.infinite) {
             animateClass += ' infinite';
             // 标记执行完成
             $promise.resolve(animateClass.split(' animated')[0]);
-        } else {
+        } else if (options.hideScrollbar) {
             $html.css('overflow', 'hidden');
         }
 
         $el.removeClass(animateList.join(' ')).removeClass(animateClass)
             .addClass(animateClass)
             .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $html.css('overflow', hoverflow);
+                if (options.hideScrollbar) {
+                    $html.css('overflow', hoverflow);
+                }
 
-                if (options.reset !== false) { // 是否复原状态
+                if (options.reset) { // 是否复原状态
                     $el.removeClass(animateClass);
                 }
 
