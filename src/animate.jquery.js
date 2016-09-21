@@ -35,6 +35,25 @@
         'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp',
         'hinge', 'rollIn', 'rollOut'
     ];
+    var animationEnd;
+
+    /**
+     * 取得当前浏览器支持的动画结束类型
+     */
+    function getAnimationEnd() {
+        var type;
+        var list = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'.split(' ');
+
+        list.forEach(function (curtype) {
+            if (window.hasOwnProperty('on' + curtype)) {
+                type = curtype;
+            }
+        });
+
+        return type || 'click';
+    }
+
+    animationEnd = getAnimationEnd();
 
     /**
      * animate 设置元素动画。依赖于 animate.css，应手动引入相关样式
@@ -135,7 +154,7 @@
 
         $el.removeClass(animateList.join(' ')).removeClass(animateClass)
             .addClass(animateClass)
-            .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            .one(animationEnd, function () {
                 if (options.hideScrollbar) {
                     $html.css('overflow', hoverflow);
                 }
