@@ -1,8 +1,8 @@
 /**
  * @file animate 组件，设置元素动画。依赖于 animate.css
- * @author lizhiwen@meizu.com
+ * @author lzwy0820@gmail.com
  * @sine   2016-04-05
- * @update 2016-09-17
+ * @update 2016-10-07
  * @module dwAnimate
  * @see 动画效果参见 ${@link https://daneden.github.io/animate.css/ animate.css}
  * @github https://github.com/lzwme/animate.css.js
@@ -86,7 +86,6 @@
         } else {
             options = el;
         }
-
         options = $.extend(true, {
             type: null,
             infinite: false,
@@ -95,13 +94,7 @@
             hideScrollbar: true
         }, options);
 
-        if (typeof options.$el === 'string') {
-            $el = $(options.$el);
-        } else if (typeof options.$e === 'string') {
-            $el = $(options.$e);
-        } else {
-            $el = $($el);
-        }
+        $el = $($el || options.$el || options.$e || options.el);
 
         if (!$el.length) { // 元素不存在
             return $promise.reject('not found target element');
