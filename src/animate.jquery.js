@@ -171,7 +171,7 @@
 
     // jQuery plugins
     $.fn.extend({
-        animateCss: function (opts) {
+        animatecssjs: function (opts) {
             if ('string' === typeof opts) {
                 opts = {type: opts};
             }

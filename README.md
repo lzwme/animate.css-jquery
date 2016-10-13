@@ -44,13 +44,13 @@ animate({$el: '.div1'}).then(() => {
 });
 
 // use as jQuery plugin
-$('body').animateCss().then((type) => {
+$('body').animatecssjs().then((type) => {
     console.log('end, animate type: ', type);
 });
 
-$('body').animateCss('zoomIn');
+$('body').animatecssjs('zoomIn');
 
-$('body').animateCss({
+$('body').animatecssjs({
     type: 'shake',
     infinite: true
 });
