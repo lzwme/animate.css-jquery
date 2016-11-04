@@ -1,6 +1,6 @@
 {
   "name": "animate.css.js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Javascript(jQuery) helper for animate.css, let the animation in the JavaScript to use more simple.",
   "main": "src/animate.jquery.js",
   "browser": "lib/animate.jquery.min.js",

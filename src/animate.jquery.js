@@ -2,7 +2,7 @@
  * @file animate 组件，设置元素动画。依赖于 animate.css
  * @author lzwy0820@gmail.com
  * @sine   2016-04-05
- * @update 2016-10-07
+ * @update 2016-11-03
  * @module dwAnimate
  * @see 动画效果参见 ${@link https://daneden.github.io/animate.css/ animate.css}
  * @github https://github.com/lzwme/animate.css.js
@@ -78,8 +78,7 @@
             $promise = $.Deferred(),
             animateClass,
             $el,
-            $html,
-            hoverflow;
+            $html;
 
         if (typeof el === 'string' || el.length) {
             $el = $(el);
@@ -134,7 +133,6 @@
 
         if (options.hideScrollbar) {
             $html = $('html:eq(0)');
-            hoverflow = $html.css('overflow');
         }
 
         if (options.infinite) {
@@ -149,7 +147,7 @@
             .addClass(animateClass)
             .one(animationEnd, function () {
                 if (options.hideScrollbar) {
-                    $html.css('overflow', hoverflow);
+                    $html.css('overflow', '');
                 }
 
                 if (options.reset) { // 是否复原状态
