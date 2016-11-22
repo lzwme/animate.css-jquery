@@ -42,15 +42,15 @@
      */
     function getAnimationEnd() {
         var type;
-        var list = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'.split(' ');
+        var list = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
-        list.forEach(function (curtype) {
+        list.split(' ').forEach(function (curtype) {
             if (window.hasOwnProperty('on' + curtype)) {
                 type = curtype;
             }
         });
 
-        return type || 'click';
+        return type || list;
     }
 
     animationEnd = getAnimationEnd();
