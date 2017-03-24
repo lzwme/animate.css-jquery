@@ -26,22 +26,28 @@ $(function (animatecssjs) {
             $(el).html(_type);
 
             if (!opts || !opts.nolog) {
-                log('<hr> animate end [' + (new Date() - starttime) + 'ms] : <button class="btn btn-xs btn-info">' + _type + '</button>');
+                log('<hr> animate end [' + (new Date() - starttime) + 'ms] : <button class="animate-text btn btn-xs btn-success">' + _type + '</button>');
             }
         });
     }
 
     function initSelect() {
-        var options = [];
+        var options = [],
+            btns = [],
+            btnType = ['default', 'primary', 'success', 'info', 'warning'],
             animateList = animatecssjs.animateList,
             i = 0,
             len = animateList.length;
 
         for (; i < len; i++) {
             options.push('<option value="' + animateList[i] + '"> ' + (i + 1) + '. ' + animateList[i] + '</option>');
+            btns.push('<button class="animate-text btn btn-xs btn-' + btnType[i % 5] + '" style="margin: 3px">' + animateList[i] + '</button>');
+
         }
 
-        return $select.html(options.join(''));
+        $('#animateListBtn').html(btns.join(''));
+
+        return $select.html(options.join('')).select2();
     }
 
     function initEvents() {
@@ -91,7 +97,7 @@ $(function (animatecssjs) {
             animateDemo($demo, $(this).text());
         });
 
-        $log.on('click', 'button', function () {
+        $(document).on('click', 'button.animate-text', function () {
             animateDemo($demo, $(this).text(), {
                 nolog: true
             });
