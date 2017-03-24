@@ -8,7 +8,7 @@
     "build": "npm run lint && uglifyjs src/animate.jquery.js -o dist/animate.jquery.min.js --source-map dist/animate.jquery.min.js.map --source-map-url animate.jquery.min.js.map --source-map-include-sources -p 1 -m -c",
     "start": "open example/index.html",
     "lint": "eslint src/ -c .eslintrc",
-    "publish": "npm publish -- registry=https://registry.npmjs.org/"
+    "publish": "npm publish --registry=https://registry.npmjs.org/"
   },
   "dependencies": {
     "jquery": "*"
