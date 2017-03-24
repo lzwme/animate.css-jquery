@@ -110,7 +110,7 @@ $(function (animatecssjs) {
         animatecssjs({$el: 'body'}).then(function (type) {
             log('animate body: ' + type);
 
-            return $('.btn').animatecssjs({
+            return $('.btn').animateCss({
                 keyword: /in/i
             });
         }).then(function (type) {
