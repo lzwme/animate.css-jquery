@@ -107,14 +107,12 @@ $(function (animatecssjs) {
 
     function init() {
         // animate body
-        animatecssjs({$el: 'body'}).then(function (type) {
+        animatecssjs({$el: 'body', hideScrollbar: true}).then(function (type) {
             log('animate body: ' + type);
 
-            return $('.btn').animateCss({
-                keyword: /in/i
+            return $('.btn').each(function () {
+                $(this).animatecssjs({keyword: /in/i});
             });
-        }).then(function (type) {
-            log('<hr> animate btns: ' + type);
         });
 
         initSelect();

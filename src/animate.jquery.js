@@ -139,14 +139,14 @@
             animateClass += ' infinite';
             // 标记执行完成
             $promise.resolve(animateClass.split(' animated')[0]);
-        } else if (options.hideScrollbar) {
+        } else if ($html) {
             $html.css('overflow', 'hidden');
         }
 
         $el.removeClass(animateList.join(' ')).removeClass(animateClass)
             .addClass(animateClass)
             .one(animationEnd, function () {
-                if (options.hideScrollbar) {
+                if ($html) {
                     $html.css('overflow', '');
                 }
 
