@@ -1,6 +1,6 @@
 {
-  "name": "animate.css.js",
-  "version": "0.0.9",
+  "name": "animate.css-jquery",
+  "version": "1.0.0",
   "description": "Javascript(jQuery) helper for animate.css, let the animation in the JavaScript to use more simple.",
   "main": "src/animate.jquery.js",
   "browser": "lib/animate.jquery.min.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lzwme/animate.css.js.git"
+    "url": "https://github.com/lzwme/animate.css-jquery.git"
   },
   "keywords": [
     "animate",
@@ -38,7 +38,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lzwme/animate.css.js/issues"
+    "url": "https://github.com/lzwme/animate.css-jquery/issues"
   },
-  "homepage": "https://github.com/lzwme/animate.css.js"
+  "homepage": "https://github.com/lzwme/animate.css-jquery"
 }

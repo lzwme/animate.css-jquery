@@ -1,7 +1,7 @@
-# animate.css.js
+# animate.css-jquery
 Javascript(jQuery) helper for [animate.css)](https://daneden.github.io/animate.css), let the animation in the JavaScript to use more simple.
 
-[Demo](http://lzw.me/pages/demo/animate.css.js/example)
+[Demo](http://lzw.me/pages/demo/animate.css-jquery/example)
 
 [![NPM version][npm-image]][npm-url]
 [![Dependency Status][david-image]][david-url]
@@ -13,16 +13,16 @@ Javascript(jQuery) helper for [animate.css)](https://daneden.github.io/animate.c
 To install via npm:
 
 ```bash
-npm i animate.css.js --save
+npm i animate.css-jquery --save
 ```
 
-Or download the latest [release](https://github.com/lzwme/animate.css.js/releases) package, and unzip it.
+Or download the latest [release](https://github.com/lzwme/animate.css-jquery/releases) package, and unzip it.
 
 ## USAGE
 
 ```js
 // example for es6
-import animate from 'animate.css.js';
+import animate from 'animate.css-jquery';
 import 'animate.css';
 
 animate({$el: $('#logo')}).then(() => {
@@ -61,7 +61,7 @@ $('body').animatecssjs({
 ```js
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="animate.css.js/lib/animate.jquery.min.js"></script>
+<script src="animate.css-jquery/lib/animate.jquery.min.js"></script>
 <script>
 window.animatecssjs({$el: $('#logo')}).then(() => {
     console.log('执行完成')
@@ -103,21 +103,21 @@ window.animatecssjs('.div1').then(() => {
 
 ## License
 
-animate.css.js is released under the MIT license.
+animate.css-jquery is released under the MIT license.
 
 该插件由[志文工作室](https://lzw.me)开发和维护。
 
-[npm-image]: https://img.shields.io/npm/v/animate.css.js.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/animate.css.js
-[github-tag]: https://img.shields.io/github/tag/lzwme/animate.css.js.svg?style=flat-square
-[github-url]: https://github.com/lzwme/animate.css.js/tags
-[travis-image]: https://img.shields.io/travis/lzwme/animate.css.js.svg?style=flat-square
-[travis-url]: https://travis-ci.org/lzwme/animate.css.js
-[coveralls-image]: https://img.shields.io/coveralls/lzwme/animate.css.js.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/lzwme/animate.css.js?branch=master
-[david-image]: https://img.shields.io/david/lzwme/animate.css.js.svg?style=flat-square
-[david-url]: https://david-dm.org/lzwme/animate.css.js
-[license-image]: https://img.shields.io/npm/l/animate.css.js.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/animate.css-jquery.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/animate.css-jquery
+[github-tag]: https://img.shields.io/github/tag/lzwme/animate.css-jquery.svg?style=flat-square
+[github-url]: https://github.com/lzwme/animate.css-jquery/tags
+[travis-image]: https://img.shields.io/travis/lzwme/animate.css-jquery.svg?style=flat-square
+[travis-url]: https://travis-ci.org/lzwme/animate.css-jquery
+[coveralls-image]: https://img.shields.io/coveralls/lzwme/animate.css-jquery.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/lzwme/animate.css-jquery?branch=master
+[david-image]: https://img.shields.io/david/lzwme/animate.css-jquery.svg?style=flat-square
+[david-url]: https://david-dm.org/lzwme/animate.css-jquery
+[license-image]: https://img.shields.io/npm/l/animate.css-jquery.svg?style=flat-square
 [license-url]: LICENSE
-[downloads-image]: https://img.shields.io/npm/dm/animate.css.js.svg?style=flat-square
-[downloads-url]: https://npmjs.org/package/animate.css.js
+[downloads-image]: https://img.shields.io/npm/dm/animate.css-jquery.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/animate.css-jquery
