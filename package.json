@@ -1,21 +1,21 @@
 {
   "name": "animate.css-jquery",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript(jQuery) helper for animate.css, let the animation in the JavaScript to use more simple.",
   "main": "src/animate.jquery.js",
   "browser": "lib/animate.jquery.min.js",
   "scripts": {
     "build": "npm run lint && uglifyjs src/animate.jquery.js -o dist/animate.jquery.min.js --source-map dist/animate.jquery.min.js.map --source-map-url animate.jquery.min.js.map --source-map-include-sources -p 1 -m -c",
     "start": "open example/index.html",
-    "lint": "eslint src/ -c .eslintrc",
+    "lint": "./node_modules/.bin/eslint --no-eslintrc -c .eslintrc src/",
     "publish": "npm publish --registry=https://registry.npmjs.org/"
   },
   "dependencies": {
     "jquery": "*"
   },
   "devDependencies": {
-    "babel-eslint": "^7.0.0",
-    "eslint": "^3.5.0",
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.9.0",
     "uglify-js": "^2.7.3"
   },
   "repository": {

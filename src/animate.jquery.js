@@ -21,19 +21,22 @@
         throw new Error('Not found jQuery.');
     }
 })(function ($) {
-    // 75 种效果
+    // 76 种效果
     var animateList = [
         'bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello',
-        'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
+        'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp',
+        'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
         'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig',
         'fadeOut', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 'fadeOutUpBig',
         'flip', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
         'lightSpeedIn', 'lightSpeedOut',
         'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
         'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
-        'slideInUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideOutUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight',
-        'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp',
-        'hinge', 'rollIn', 'rollOut'
+        'slideInUp', 'slideInDown', 'slideInLeft', 'slideInRight',
+        'slideOutUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight',
+        'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp',
+        'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp',
+        'hinge', 'jackInTheBox', 'rollIn', 'rollOut'
     ];
     var animationEnd;
 
@@ -41,20 +44,23 @@
      * 取得当前浏览器支持的动画结束类型
      */
     function getAnimationEnd() {
-        var type;
+        var evType;
         var list = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
         list.split(' ').forEach(function (curtype) {
             if (window.hasOwnProperty('on' + curtype)) {
-                type = curtype;
+                evType = curtype;
             }
         });
 
-        return type || list;
+        return evType || list;
     }
-
     animationEnd = getAnimationEnd();
 
+    // 从数组中取得随机一个值
+    function getRandomArrItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
     /**
      * animate 设置元素动画。依赖于 animate.css，应手动引入相关样式
      * @param {String|Object} options.el 为 $el 或 options
@@ -64,7 +70,7 @@
      *     $el: null, 执行动画的元素jquery对象，或 class\id
      *     type: null, 动画类型，为 string。为空时随机取值执行；为数组列表时从列表中随机选择执行
      *     infinite: false, 是否无限运动
-     *     keyword: null, 为随机取值时，限定包含关键字的动画列表。可为简单正则，未匹配到则随机取值
+     *     keyword: '', 为随机取值时，限定包含关键字的动画列表。可为简单正则，未匹配到则随机取值
      *     reset: true,  执行后是否重置状态
      *     hideScrollbar: true, 执行时是否隐藏浏览器 scrollbar
      *     callback infinite为 false 时，成功执行后回调
@@ -76,9 +82,11 @@
         // 支持的动画类型，75 种
         var animateFilterList = [], // 用于 keyword 过滤
             $promise = $.Deferred(),
+            animateType,
             animateClass,
             $el,
-            $html;
+            $html,
+            keyword;
 
         if (typeof el === 'string' || el.length) {
             $el = $(el);
@@ -86,50 +94,48 @@
             options = el;
         }
         options = $.extend(true, {
-            type: null,
+            type: '',
             infinite: false,
-            keyword: null,
+            keyword: '',
             reset: true,
             hideScrollbar: true
         }, options);
 
+        keyword = options.keyword;
         $el = $($el || options.$el || options.$e || options.el);
 
         if (!$el.length) { // 元素不存在
             return $promise.reject('not found target element');
         }
 
-        // 首先移除所有已加载的动画类
-        $el.removeClass(animateList.join(' ') + ' infinite animated');
-
-        animateClass = options.type || options.animateClass;
-        if ($.isArray(animateClass)) { // 给定数组中随机显示
-            animateClass = animateClass[Math.floor(Math.random() * animateClass.length)];
+        animateType = options.type || options.animateClass;
+        if ($.isArray(animateType)) { // 给定数组中随机显示
+            animateType = getRandomArrItem(animateType);
         }
 
         // 过滤关键字的随机取值，keyword 可为字符串或正则表达式
-        if (!animateClass && options.keyword) {
-            if (typeof options.keyword === 'string') {
-                options.keyword = new RegExp(options.keyword, 'i');
+        if (!animateType && keyword) {
+            if (typeof keyword === 'string') {
+                keyword = new RegExp(options.keyword, 'i');
             }
 
-            if (typeof options.keyword === 'object' && options.keyword.exec) {
+            // 为正则
+            if (keyword instanceof RegExp) {
                 animateList.forEach(function (item) {
-                    if (options.keyword.test(item)) {
+                    if (keyword.test(item)) {
                         animateFilterList.push(item);
                     }
                 });
-
-                animateClass = animateFilterList[Math.floor(Math.random() * animateFilterList.length)];
+                animateType = getRandomArrItem(animateFilterList);
             }
         }
 
         // 随机取值
-        if (!~animateList.indexOf(animateClass)) {
-            animateClass = animateList[Math.floor(Math.random() * animateList.length)];
+        if (!~animateList.indexOf(animateType)) {
+            animateType = getRandomArrItem(animateList);
         }
 
-        animateClass += ' animated';
+        animateClass = animateType + ' animated';
 
         if (options.hideScrollbar) {
             $html = $('html:eq(0)');
@@ -138,19 +144,19 @@
         if (options.infinite) {
             animateClass += ' infinite';
             // 标记执行完成
-            $promise.resolve(animateClass.split(' animated')[0]);
+            $promise.resolve(animateType);
         } else if ($html) {
             $html.css('overflow', 'hidden');
         }
 
-        $el.removeClass(animateList.join(' ')).removeClass(animateClass)
+        $el.removeClass(animateList.join(' ') + ' infinite animated')
             .addClass(animateClass)
             .one(animationEnd, function () {
                 if ($html) {
                     $html.css('overflow', '');
                 }
 
-                if (options.reset) { // 是否复原状态
+                if (options.reset) { // 执行完成后是否复原状态
                     $el.removeClass(animateClass);
                 }
 
@@ -159,7 +165,7 @@
                 }
 
                 // 标记执行完成
-                $promise.resolve(animateClass.split(' animated')[0]);
+                $promise.resolve(animateType);
             });
 
         return $promise;
@@ -170,15 +176,13 @@
     // jQuery plugins
     $.fn.extend({
         animatecssjs: function (opts) {
-            if ('string' === typeof opts) {
+            if (~animateList.indexOf(opts)) {
                 opts = {type: opts};
             }
 
-            opts = $.extend({}, opts, {
+            return animate($.extend({}, opts, {
                 $el: $(this)
-            });
-
-            return animate(opts);
+            }));
         }
     });
 

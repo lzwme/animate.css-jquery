@@ -1,10 +1,4 @@
 {
-    "ecmaFeatures": {
-        "globalReturn": true,
-        "jsx": true,
-        "modules": true
-    },
-
     "env": {
         "browser": true,
         "es6": true,
@@ -34,7 +28,6 @@
     "plugins": [
 
     ],
-
     "rules": {
         "block-scoped-var": 2,
         "brace-style": [2, "1tbs", {
@@ -80,6 +73,7 @@
             "newIsCap": true,
             "capIsNew": false
         }],
+        "no-multi-spaces": [1, { "ignoreEOLComments": true }],
         "newline-after-var": [2, "always"],
         "new-parens": 2,
         "no-alert": 0,
@@ -126,7 +120,6 @@
         "no-loop-func": 0,
         "no-mixed-requires": 0,
         "no-mixed-spaces-and-tabs": [2, false],
-        "no-multi-spaces": 2,
         "no-multi-str": 2,
         "no-multiple-empty-lines": [2, {
             "max": 1

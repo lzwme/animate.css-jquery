@@ -6,7 +6,7 @@ $(function (animatecssjs) {
         $log = $('#logs');
 
     function log(msg) {
-        console.log(msg);
+        console.log(msg.replace(/<.*?>/g, ''));
         $log.prepend('<p>' + msg + '</p>'); // .scrollTop($log.height());
     }
 
@@ -51,6 +51,9 @@ $(function (animatecssjs) {
     }
 
     function initEvents() {
+        var $randomTest = $('.random_test');
+        var $randomTestStop = $('.random_test_stop');
+
         $select.on('change', function () {
             var type = $(this).val();
 
@@ -58,39 +61,41 @@ $(function (animatecssjs) {
         });
 
         $('.infinite').on('click', function () {
+            $randomTestStop.click();
             animateDemo('#demo', '', {
                 infinite: true
             });
         });
 
         $('.k_in').on('click', function () {
+            $randomTestStop.click();
             animateDemo('#demo', '', {
                 keyword: 'in'
             });
         });
 
         $('.k_out').on('click', function () {
+            $randomTestStop.click();
             animateDemo('#demo', '', {
                 keyword: /out/i
             });
         });
 
-        $('.random_test').on('click', function () {
-            var $this = $(this);
+        $randomTest.on('click', function () {
+            $randomTest.addClass('btn-danger');
 
-            if ($this.hasClass('stop')) {
-                $this.removeClass('stop btn-danger');
-            } else {
-                $this.addClass('btn-danger');
-
-                animateDemo('#demo', '').then(function () {
-                    $this.click();
-                });
-            }
+            animateDemo($demo, '').then(function () {
+                if ($randomTest.hasClass('stop')) {
+                    $randomTest.removeClass('stop');
+                    return;
+                }
+                $randomTest.click();
+            });
         });
 
-        $('.random_test_stop').on('click', function () {
-            $('.random_test').addClass('stop');
+        $randomTestStop.on('click', function () {
+            $demo.removeClass('infinite animated');
+            $randomTest.removeClass('btn-danger').addClass('stop');
         });
 
         $demo.on('click', function () {
